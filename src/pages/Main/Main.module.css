@@ -1,0 +1,139 @@
+::-webkit-scrollbar-thumb {
+    width: 1vh;
+    background-color: #272D42;
+    border-radius: .25vh;
+}
+
+::-webkit-scrollbar {
+    width: 2vh;
+    background-color: #141C25;
+    border-radius: .25vh;
+}
+
+.wholeContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.mainContain {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(49, 57, 73);
+    display: flex;
+    flex-direction: row;
+}
+
+.menu {
+    padding-top: 5%;
+    height: 100%;
+    width: 20%;
+    background-color: rgb(27, 36, 47);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menuAttributes {
+    cursor: pointer;
+    height: 7%;
+    width: 70%;
+    background-color: rgba(47, 54, 62, .5);
+    box-shadow: .1rem .1rem 1.2rem .1rem grey;
+    color: white;
+    border-radius: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noAnimalsDisplayArea {
+    height: 100%;
+    width: 80%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerAnimalsMessage {
+    height: 20%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.addButtonContainer {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.addedAnimalsContainer {
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.eachAnimalOuter {
+    margin-top: 2%;
+    height: 8%;
+    width: 70%;
+    border-radius: .5vh;
+}
+
+.eachAnimal {
+    margin: 4% 0;
+    height: 100%;
+    width: 100%;
+    border-radius: .5vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #141C25;
+    box-shadow: .1rem .1rem 1.2rem .1rem grey;
+}
+
+.eachAnimalHead {
+    margin: -4% 0;
+    height: 7%;
+    width: 56%;
+    border-radius: .5vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #141C25;
+    box-shadow: .1rem .1rem 1.2rem .1rem grey;
+    position: fixed;
+}
+
+.firstHalf {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.secondHalf {
+    height: 100%;
+    width: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.detailsEachAnim {
+    width: 20%;
+    text-align: center;
+}
+
+.detailsEachAnimName {
+    width: 20%;
+}

@@ -1,0 +1,43 @@
+.generalStyle {
+    cursor: pointer;
+}
+
+.deleteIcon {
+    color: white;
+    font-size: .8rem;
+}
+
+.changeColor {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.changeColor:hover {
+    animation: hoverColor 0.3s forwards;
+}
+
+@keyframes hoverColor {
+    0% {
+        background-color: transparent;
+    }
+
+    100% {
+        background-color: red;
+    }
+}
+
+.changeColor:not(:hover) {
+    animation: unHoverColor 0.3s forwards;
+}
+
+@keyframes unHoverColor {
+    0% {
+        background-color: red;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
