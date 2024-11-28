@@ -16,19 +16,19 @@ export default function Main() {
     const addAnimals = (): void => {
         navigation('/form')
     }
-    
-    const [alert, setalert] = useState<boolean>(false);
-    const [confirmRmv, setConfirmRmv] = useState<boolean>(false);
+
+    const [alert, setalert] = useState<boolean>();
+    const [confirmRmv, setConfirmRmv] = useState<boolean>();
     const [removeIndex, setRemoveIndex] = useState<string>();
 
 
     const alertMessage = (name: string | undefined): void => {
         setRemoveIndex(name)
         setalert(true);
-        setConfirmRmv(true);
+        // setConfirmRmv(true);
     }
 
-    const removeEmployee = (name: string | undefined) => {
+    const removeAnimal = (name: string | undefined) => {
         if (name !== undefined)
             delete animObj[name as keyof typeof animObj];
         localStorage.setItem('Animals', JSON.stringify(animObj, null, 4));
@@ -36,7 +36,7 @@ export default function Main() {
 
     useEffect(() => {
         if (confirmRmv) {
-            removeEmployee(removeIndex);
+            removeAnimal(removeIndex);
         }
     })
 

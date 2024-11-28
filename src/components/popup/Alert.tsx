@@ -5,6 +5,7 @@ import { StyleProp } from '../../Interface/interface'
 export default function Alert(props: StyleProp) {
     const closeAlert = () => {
         props.setalert?.(false);
+        window.location.reload();
     }
 
     const removeEmp = () => {
