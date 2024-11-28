@@ -47,7 +47,7 @@ export default function Form(props: StyleProp) {
       localStorage.setItem("Animals", JSON.stringify(dataObj));
 
       console.log(dataObj);
-      // navigation("/", { state: { data: structuredDetails } });
+      navigation("/", { state: { data: dataObj } });
     } else {
       alert("All Inputs required !");
     }
