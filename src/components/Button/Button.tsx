@@ -13,6 +13,10 @@ export default function Button(props: StyleProp) {
     marginRight: props.right,
     marginTop: props.top,
     fontSize: props.size,
+    display: props.display,
+    justifyContent: props.justify,
+    alignItems: props.alignItems,
+    fontWeight: props.weight
   }
   return (
     <button className={`${buttonStyle.generalStyle} ${props.animate === true? buttonStyle.changeColor : null}`} onClick={props.event} style={Style}>

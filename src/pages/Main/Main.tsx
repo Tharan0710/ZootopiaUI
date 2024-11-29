@@ -17,15 +17,16 @@ export default function Main() {
         navigation('/form')
     }
 
-    const [alert, setalert] = useState<boolean>();
-    const [confirmRmv, setConfirmRmv] = useState<boolean>();
+    const [alert, setalert] = useState<boolean>(false);
+    const [detailProp, setDetailProp] = useState<boolean>(false);
+    const [confirmRmv, setConfirmRmv] = useState<boolean>(false);
     const [removeIndex, setRemoveIndex] = useState<string>();
+    const [eachAnim, setEachAnim] = useState<Animals>();
 
 
     const alertMessage = (name: string | undefined): void => {
         setRemoveIndex(name)
         setalert(true);
-        // setConfirmRmv(true);
     }
 
     const removeAnimal = (name: string | undefined) => {
@@ -40,18 +41,19 @@ export default function Main() {
         }
     })
 
+    const singleAnimObj = (animal: Animals): void => {
+        setEachAnim(animal);
+    }
+
     const createAnimals = () => {
         const mapObj = new Map(Object.entries(animObj))
         return Array.from(mapObj.entries()).map(([key, animal], index) => (
             <li className={mainStyle.eachAnimal} key={animal?.Name}>
                 <div className={mainStyle.firstHalf}>
                     <p className={mainStyle.detailsEachAnim}>{index + 1}</p>
-                    <p className={`${mainStyle.detailsEachAnim} ${mainStyle.detailsEachAnimName}`}>{animal?.Name}</p>
+                    <p onClick={() => {setDetailProp(true); singleAnimObj(animal)}} className={`${mainStyle.detailsEachAnim} ${mainStyle.detailsEachAnimName}`}>{animal?.Name}</p>
                     <p className={mainStyle.detailsEachAnim}>{animal?.FoodChain}</p>
                     <p className={mainStyle.detailsEachAnim}>{animal?.Type}</p>
-                    {/* <p className={mainStyle.detailsEachAnim}>{animal?.Habitat}</p>
-                    <p className={mainStyle.detailsEachAnim}>{(animal?.['Can Fly'] === true) ? "Yes" : "No"}</p>
-                    <p className={mainStyle.detailsEachAnim}>{(animal?.['Has Fur'] === true) ? "Yes" : "No"}</p> */}
                 </div>
                 <div className={mainStyle.secondHalf}>
                     <Button event={() => { alertMessage(animal?.Name); }} animate={true} height={"40%"} width={"50%"} back={"transparent"} color={"white"} icon={"fa-solid fa-trash-can"} border={"none"} radius={".3vh"} />
@@ -61,7 +63,8 @@ export default function Main() {
     }
     return (
         <div className={mainStyle.wholeContainer}>
-            {(alert) ? <Alert setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
+            {(alert) ? <Alert content={`Are you sure want to \n remove the Animal?`} setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
+            {(detailProp) ? <Alert eachAnim={eachAnim} detailProp={detailProp} setDetailProp={setDetailProp} setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
             <Header icon={"fa-solid fa-dragon"} content={"Zootopia"} />
             <div className={mainStyle.mainContain}>
                 <div className={mainStyle.menu}>
@@ -91,9 +94,6 @@ export default function Main() {
                                             <p className={`${mainStyle.detailsEachAnim} ${mainStyle.detailsEachAnimName}`}>Name</p>
                                             <p className={mainStyle.detailsEachAnim}>Food Chain</p>
                                             <p className={mainStyle.detailsEachAnim}>Type</p>
-                                            {/* <p className={mainStyle.detailsEachAnim}>Habitat</p>
-                                    <p className={mainStyle.detailsEachAnim}>Can Fly</p>
-                                    <p className={mainStyle.detailsEachAnim}>Has Fur</p> */}
                                         </div>
                                     </li> : ""}
                                     {createAnimals()}

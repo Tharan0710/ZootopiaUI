@@ -136,4 +136,40 @@
 
 .detailsEachAnimName {
     width: 20%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.detailsEachAnimName:hover {
+    animation: hoverColor 0.3s forwards;
+}
+
+@keyframes hoverColor {
+    0% {
+        color: white;
+        font-weight: normal;
+    }
+
+    100% {
+        color: hotpink;
+        font-weight: bolder;
+    }
+}
+
+.detailsEachAnimName:not(:hover) {
+    animation: unHoverColor 0.3s forwards;
+}
+
+@keyframes unHoverColor {
+    0% {
+        color: hotpink;
+        font-weight: bolder;
+    }
+    
+    100% {
+        color: white;
+        font-weight: normal;
+    }
 }

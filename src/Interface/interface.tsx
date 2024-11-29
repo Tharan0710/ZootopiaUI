@@ -11,10 +11,18 @@ export interface StyleProp {
     size?: string,
     event?: React.MouseEventHandler<HTMLButtonElement> | undefined,
     content?: string,
+    contentNum?: number,
     icon?: string,
     setalert?: Function | undefined,
     setConfirmRmv?: Function | undefined,
+    setDetailProp?: Function | undefined,
+    detailProp?: boolean,
     animate?: boolean,
+    display?: string,
+    justify?: string,
+    alignItems?: string,
+    weight?: string,
+    eachAnim?: Animals,
 }
 
 export interface Animals {
