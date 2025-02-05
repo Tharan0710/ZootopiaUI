@@ -1,14 +1,13 @@
 import formStyle from './Form.module.css'
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import { Animal, Animals, StyleProp } from '../../Interface/interface';
+import { Animal, Animals, FormProps } from '../../Interface/interface';
 
-export default function Form(props: StyleProp) {
+export default function Form(props: FormProps) {
 
   const navigation = useNavigate();
-  const location = useLocation();
 
   const Name = useRef<HTMLInputElement | null>(null);
   const Type = useRef<HTMLInputElement | null>(null);
@@ -16,6 +15,24 @@ export default function Form(props: StyleProp) {
   const FoodChain = useRef<HTMLInputElement | null>(null);
   const CanFly = useRef<HTMLInputElement>(null);
   const HasFur = useRef<HTMLInputElement>(null);
+
+
+  useEffect(() => {
+    if(!props.handleScroll) {
+      return;
+    }
+
+  const handleScroll = () => {
+    console.log(" Form Scrolling");
+    props.handleScroll&& props.handleScroll();
+  };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+      
+    };
+  }, [props.handleScroll]);
 
   const cancelCreateAnimal = (): void => {
     navigation('/');
@@ -89,7 +106,7 @@ export default function Form(props: StyleProp) {
           <div className={formStyle.halfFormDetails}>
             <div className={formStyle.inputTagsContain}>
               <label className={formStyle.fieldLable}>Name</label>
-              <input ref={Name} className={formStyle.inputTags} type='text' />
+              <input ref={Name} className={formStyle.inputTags} type='text' /> 
             </div>
 
             <div className={formStyle.inputTagsContain}>

@@ -21,7 +21,7 @@ export default function Alert(props: StyleProp) {
             <div className={alertStyle.alertWholeContain}>
                 <div className={alertStyle.alertMessageInnerContain}>
                     <div className={alertStyle.popupHead}>
-                        <h2 className={alertStyle.animName}>Lion's</h2>
+                        <h2 className={alertStyle.animName}>{`${props.eachAnim?.Name}'s Details`}</h2>
                         <Button event={() => { closeDetail() }} animate={true} color={"white"} weight={"bold"} size={"1rem"} content='X' height={"80%"} width={"7%"} back={"transparent"} right={"2%"} border={"none"} radius={".5vh"} display={"flex"} justify={"center"} alignItems={"center"} />
                     </div>
                     <div className={alertStyle.popupText}>

@@ -23,6 +23,7 @@ export interface StyleProp {
     alignItems?: string,
     weight?: string,
     eachAnim?: Animals,
+    'data-testid'?: string | undefined,
 }
 
 export interface Animals {
@@ -40,4 +41,13 @@ export type Animal = {
 
 export interface FuncProps {
     setalert: (value: boolean) => void;
+}
+
+export interface MainProps {
+    addAnimals?: () => void;
+    handleScroll?: () => void;
+}
+
+export interface FormProps {
+    handleScroll?: () => void;
 }

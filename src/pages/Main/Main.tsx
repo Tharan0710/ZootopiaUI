@@ -1,23 +1,24 @@
 import mainStyle from './Main.module.css'
 import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
-import { useNavigate } from 'react-router-dom'
-import { Animals } from '../../Interface/interface';
+import { Animals, MainProps } from '../../Interface/interface';
 import { useEffect, useState } from 'react';
 import Alert from '../../components/popup/Alert';
+// import { useNavigate } from 'react-router-dom';
 
-export default function Main() {
 
-    const navigation = useNavigate();
-
+export default function Main(props: MainProps) {
+    
+    // const navigation = useNavigate();
     const dataString: string | null = localStorage.getItem("Animals");
     const animObj: Animals = dataString ? JSON.parse(dataString) : {};
 
-    const addAnimals = (): void => {
-        navigation('/form')
-    }
+    
+    // const props.addAnimals = () => {
+    //     return navigation('/form');
+    // }
 
-    const [alert, setalert] = useState<boolean>(false);
+    const [alerts, setalert] = useState<boolean>(false);
     const [detailProp, setDetailProp] = useState<boolean>(false);
     const [confirmRmv, setConfirmRmv] = useState<boolean>(false);
     const [removeIndex, setRemoveIndex] = useState<string>();
@@ -25,6 +26,7 @@ export default function Main() {
 
 
     const alertMessage = (name: string | undefined): void => {
+        console.log("Hi");
         setRemoveIndex(name)
         setalert(true);
     }
@@ -37,6 +39,7 @@ export default function Main() {
 
     useEffect(() => {
         if (confirmRmv) {
+
             removeAnimal(removeIndex);
         }
     })
@@ -48,10 +51,10 @@ export default function Main() {
     const createAnimals = () => {
         const mapObj = new Map(Object.entries(animObj))
         return Array.from(mapObj.entries()).map(([key, animal], index) => (
-            <li className={mainStyle.eachAnimal} key={animal?.Name}>
+            <li className={mainStyle.eachAnimal} key={key}>
                 <div className={mainStyle.firstHalf}>
                     <p className={mainStyle.detailsEachAnim}>{index + 1}</p>
-                    <p onClick={() => {setDetailProp(true); singleAnimObj(animal)}} className={`${mainStyle.detailsEachAnim} ${mainStyle.detailsEachAnimName}`}>{animal?.Name}</p>
+                    <p onClick={() => { setDetailProp(true); singleAnimObj(animal) }} className={`${mainStyle.detailsEachAnim} ${mainStyle.detailsEachAnimName}`}>{animal?.Name}</p>
                     <p className={mainStyle.detailsEachAnim}>{animal?.FoodChain}</p>
                     <p className={mainStyle.detailsEachAnim}>{animal?.Type}</p>
                 </div>
@@ -63,7 +66,7 @@ export default function Main() {
     }
     return (
         <div className={mainStyle.wholeContainer}>
-            {(alert) ? <Alert content={`Are you sure want to \n remove the Animal?`} setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
+            {(alerts) ? <Alert content={`Are you sure want to \n remove the Animal?`} setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
             {(detailProp) ? <Alert eachAnim={eachAnim} detailProp={detailProp} setDetailProp={setDetailProp} setalert={setalert} setConfirmRmv={setConfirmRmv} /> : ""}
             <Header icon={"fa-solid fa-dragon"} content={"Zootopia"} />
             <div className={mainStyle.mainContain}>
@@ -77,13 +80,13 @@ export default function Main() {
                             <div className={mainStyle.innerAnimalsMessage} >
                                 <h2 className={mainStyle.message}>No Animals Found</h2>
                                 <p className={mainStyle.message}>click the below button to add Animals</p>
-                                <Button event={addAnimals} height={"2vw"} width={"5vw"} content={"Add"} border={"none"} radius={".25em"} />
+                                <Button event={props.addAnimals} height={"2vw"} width={"5vw"} content={"Add"} border={"none"} radius={".25em"} />
                             </div>
                         </div> :
 
                         <div className={mainStyle.noAnimalsDisplayArea}>
                             <div className={mainStyle.addButtonContainer}>
-                                <Button event={addAnimals} back={"#0088CC"} color={"white"} size={"1em"} content={"Add"} top={"4%"} right={"2%"} height={"25%"} width={"5%"} border={"none"} radius={".5vh"} />
+                                <Button event={props.addAnimals} back={"#0088CC"} color={"white"} size={"1em"} content={"Add"} top={"4%"} right={"2%"} height={"25%"} width={"5%"} border={"none"} radius={".5vh"} />
                             </div>
 
                             <div className={mainStyle.addedAnimalsContainer}>

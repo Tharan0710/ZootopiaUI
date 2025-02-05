@@ -1,18 +1,25 @@
 import './App.css';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 import Main from './pages/Main/Main';
 import Form from './pages/Form/Form';
 
 function App() {
+  const navigation = useNavigate();
+
+  const handleScroll = () => {
+    console.log("Scrolling");
+  }
+
+  const addAnimals = (): void => {
+    navigation('/form');
+  }
+
   return (
     <div className="App">
-      {/* <p> Hello..</p> */}
-      <Router>
         <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/form' element={<Form />} />
+          <Route path='/' element={<Main addAnimals={addAnimals} />} />
+          <Route path='/form' element={<Form handleScroll={handleScroll} />} />
         </Routes>
-      </Router>
     </div>
   );
 }
